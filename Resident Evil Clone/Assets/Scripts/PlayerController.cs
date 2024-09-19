@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float mouseSensitivity = 5f;
     [SerializeField] float verticalLookLimit;
     [SerializeField] Transform fpsCamera;
+    [SerializeField] Transform firePoint;
     
     private bool isGrounded = true;
     private float xRotation;
@@ -75,6 +76,23 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shoot(1);
+        }
+    }
+
+    private void Shoot(float damage)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 100))
+        {
+            Debug.DrawRay(firePoint.position, firePoint.forward * hit.distance, Color.red, 2f);
+            if (hit.transform.CompareTag("Zombie"))
+            {
+                hit.transform.GetComponent<Zombie>().TakeDamage(damage);
+            }
         }
     }
 }
