@@ -79,20 +79,20 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot(1);
+            //Shoot(1);
         }
     }
 
-    private void Shoot(float damage)
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 100))
-        {
-            Debug.DrawRay(firePoint.position, firePoint.forward * hit.distance, Color.red, 2f);
-            if (hit.transform.CompareTag("Zombie"))
-            {
-                hit.transform.GetComponent<Zombie>().TakeDamage(damage);
-            }
-        }
-    }
+    //private void Shoot(float damage)
+    //{
+    //    RaycastHit hit;
+    //    if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 100))
+    //    {
+    //        Debug.DrawRay(firePoint.position, firePoint.forward * hit.distance, Color.red, 2f);
+    //        if (hit.transform.CompareTag("Zombie"))
+    //        {
+    //           hit.transform.GetComponent<Zombie>().TakeDamage(damage);
+    //        }
+    //    }
+    //}
 }
