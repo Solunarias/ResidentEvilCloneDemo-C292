@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = true;
     private float xRotation;
     private Rigidbody rb;
+    private Magazine currentMag;
+    public Magazine CurrentMag { get => currentMag; set => currentMag = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -77,9 +79,19 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            //Shoot(1);
+            float distance = 100f;
+            Debug.DrawRay(fpsCamera.position, fpsCamera.forward * distance, Color.green, 2f);
+            if(Physics.Raycast(fpsCamera.position, fpsCamera.forward, out RaycastHit hit, distance))
+            {
+                if(hit.transform.TryGetComponent(out Magazine magazine))
+                {
+                    Debug.Log("Magazine");
+                    magazine.OnPickup(this);
+                    Debug.Log(currentMag);
+                }
+            }
         }
     }
 
