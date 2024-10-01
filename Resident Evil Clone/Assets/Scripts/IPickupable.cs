@@ -9,5 +9,5 @@ public interface IPickupable
     string MagType { get; set; }
 
     void OnPickup(PlayerController player);
-    void OnDrop();
+    void OnDrop(Transform position);
 }

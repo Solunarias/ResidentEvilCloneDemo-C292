@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    [SerializeField] Transform dropPoint;
+    [SerializeField] Weapon weapon;
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] float mouseSensitivity = 5f;
@@ -90,8 +92,13 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("Magazine");
                     magazine.OnPickup(this);
                     Debug.Log(currentMag);
+                    weapon.CurrentMag = currentMag;
                 }
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            currentMag.OnDrop(dropPoint);
         }
     }
 

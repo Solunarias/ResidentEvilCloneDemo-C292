@@ -8,8 +8,6 @@ public class Pistol : Weapon
     void Start()
     {
         canFire = true;
-        ammoCapacity = 10;
-        currentAmmo = ammoCapacity;
     }
 
     // Update is called once per frame
@@ -20,10 +18,16 @@ public class Pistol : Weapon
 
     protected override void Fire()
     {
-        if(currentAmmo > 0 && canFire)
+
+        if (currentMag == null)
+        {
+            Debug.Log("No mag");
+            return;
+        }
+        if(currentMag.AmmoCount > 0 && canFire)
         {
             Debug.Log("Pistol Fired");
-            currentAmmo--;
+            currentMag.AmmoCount--;
 
             RaycastHit hit;
             if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 100))
@@ -55,6 +59,6 @@ public class Pistol : Weapon
 
         Debug.Log("Reloaded");
         canFire = true;
-        currentAmmo = ammoCapacity;
+        currentMag.Reload();
     }
 }

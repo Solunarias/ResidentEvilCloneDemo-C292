@@ -5,8 +5,7 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] protected int ammoCapacity;
-    [SerializeField] protected int currentAmmo;
+    [SerializeField] protected Magazine currentMag;
     [SerializeField] protected float fireRate;
     [SerializeField] protected bool canFire;
     
@@ -14,6 +13,8 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected float damage;
 
     [SerializeField] protected float reloadTime;
+
+    public Magazine CurrentMag { get => currentMag; set => currentMag = value; }
     
     protected virtual void Update()
     {
