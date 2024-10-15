@@ -33,6 +33,7 @@ public class Zombie : MonoBehaviour
         AudioManager.instance.PlayOneShot(AudioManager.instance.zombieDamage);
         if (currentHealth <= 0)
         {
+            UIManager.zombieDeath?.Invoke(10);
             Destroy(gameObject);
         }
     }
